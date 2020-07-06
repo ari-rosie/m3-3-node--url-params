@@ -1,0 +1,12 @@
+<% data.forEach(song => { %>
+    <% const { rank, title, artist, streams, publicationDate} = song; %>
+    <li>
+        <div class="rank">
+            <h2>#<%=rank%></h2>
+            <span class="stream">(<%=streams%> streams)</span>
+        </div>
+        <div class="song">
+        <%-`<p>${title}</p> <p>${artist}</p> <p>${publicationDate}</p>`%>
+        </div>
+    </li>
+<% }); %>
