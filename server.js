@@ -72,8 +72,16 @@ const handleReq = (req, res) => {
 }
 
 const handleSingles = (req, res) => {
-    res.status(200);
-    res.render('pages/song', {title: `Song#${req.params.id}`, data: getSong(req.params.id, top50)});
+    if (req.params.id > 0 && req.params.id < 51) {
+        res.status(200);
+        res.render('pages/song', {title: `Song#${req.params.id}`, data: getSong(req.params.id, top50)});
+    } else {
+        res.status(404);
+        res.render('pages/fourOhFour', {
+            title: 'Cannot find that song..',
+            path: req.originalUrl
+        });
+    }
 }
 
 app.use(morgan('dev'));

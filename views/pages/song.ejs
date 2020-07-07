@@ -1,9 +1,12 @@
 <%- include('../partials/header') %>
 <main class="wrapper_song">
+    <a href=<%=`/song/${data.rank - 1}`%>>PREVIOUS</a>
     <div class="singles">
         <p class="title"><%=data.title%></p>
         <p class="artist"><%=data.artist%></p>
         <p class="streams"><%=data.streams%></p>
-    </div>
+    </div> 
+    <a href=<%=`/song/${data.rank + 1}`%>>NEXT</a>
+   
 </main>
 <%- include('../partials/footer') %>
