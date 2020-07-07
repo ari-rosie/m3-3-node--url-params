@@ -57,7 +57,7 @@ const renderData = (id) => {
     }
 }
 
-//function to get one song object from the array
+//function to return one song object from the array
 const getSong = (rank, list) => {
     return list[--rank];
 }
