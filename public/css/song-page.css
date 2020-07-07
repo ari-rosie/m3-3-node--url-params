@@ -1,1 +1,33 @@
 /* song page css */
+
+.wrapper_song {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper_song .singles {
+    border: grey solid 2px;
+    border-radius: 5px;
+    height: 70%;
+    width: 40%;
+}
+
+.wrapper_song .singles p {
+    text-align: center;
+}
+
+.wrapper_song .singles p:first-child {
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: grey solid 1px;
+    margin: 10px 20px;
+}
+
+.wrapper_song .singles p:last-child {
+    font-size: 10em;
+    opacity: 0.3;
+    font-weight: bolder;
+} 

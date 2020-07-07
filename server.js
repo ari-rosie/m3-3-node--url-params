@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 
+// function that returns the most popular artist of an array of objects
 const topArtist = (top50) => {
     let artistArr = [];
     let topNum = 0;
@@ -35,12 +36,16 @@ const topArtist = (top50) => {
     return topName;
 };
 
-const mostPopular = top50.filter((song) => {
-    return song.artist.includes(topArtist(top50));
-});
+
+// returns array of songs from one artist
+const artistArr = (artist) => {
+    return top50.filter((song) => {
+        return song.artist.includes(artist);
+    });
+}
 
 
-
+//function that defines data sent to frontend for pages with song list
 let title, data;
 const renderData = (id) => {
     if (id === 'top50') {
@@ -48,8 +53,13 @@ const renderData = (id) => {
         data = top50;
     } else if (id === 'popular-artist'){
         title = 'Most popular artist';
-        data = mostPopular;
+        data = artistArr(topArtist(top50));
     }
+}
+
+//function to get one song object from the array
+const getSong = (rank, list) => {
+    return list[--rank];
 }
 
 const handleReq = (req, res) => {
@@ -61,12 +71,18 @@ const handleReq = (req, res) => {
     });
 }
 
+const handleSingles = (req, res) => {
+    res.status(200);
+    res.render('pages/song', {title: `Song#${req.params.id}`, data: getSong(req.params.id, top50)});
+}
+
 app.use(morgan('dev'));
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
 app.set('view engine', 'ejs');
 
 // endpoints here
+app.get('/song/:id', handleSingles);
 app.get('/:id', handleReq);
 
 // handle 404s
